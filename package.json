@@ -1,0 +1,18 @@
+{
+  "name": "rest-api-hngx",
+  "version": "1.0.0",
+  "description": "a resp api that performs CRUD operations",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "author": "Ayomide Aluko",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongodb": "6.0",
+    "mongoose": "^7.5.0"
+  }
+}
