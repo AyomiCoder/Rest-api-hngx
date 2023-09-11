@@ -11,7 +11,7 @@ const createPerson = async (req, res) => {
   }
 };
 
-// Read details of persons by user_id or name (optional query parameters)
+// Read all persons
 const getPersons = async (req, res) => {
   try {
     const query = {};

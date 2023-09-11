@@ -12,10 +12,10 @@ const {
   // Create a new person
   router.post('/api', createPerson);
 
-  // Read details of persons by user_id or name (optional query parameters)
+  // Read all
   router.get('/api', getPersons);
   
-  // Read details of a person by user_id
+  // Read details of a person by user_id or name
   router.get('/api/:queryParam', getPerson);
   
   // Update details of an existing person by user_id

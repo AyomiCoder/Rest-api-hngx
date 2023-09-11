@@ -16,6 +16,7 @@ Our REST API adheres to industry best practices, providing a robust and flexible
 ## Endpoints
 
 **Note: Make sure the `name` comes first before the `user_id`**
+**Note: MongoDB `id` doesn't occur in a sequential order and it contains 24 characters. So add your `user_id` field in your `POST` requests so you can `READ, UPDATE` and `DELETE` data with the custom `id` you have set.**
 
 ### Create a Person
 
@@ -168,8 +169,6 @@ Our REST API adheres to industry best practices, providing a robust and flexible
     "message": "Person deleted successfully"
   }
   ```
-
-## Conclusion
 
 ## Conclusion
 
