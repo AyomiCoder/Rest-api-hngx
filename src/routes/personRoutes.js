@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const {
     createPerson,
+    getPersons,
     getPerson,
     updatePerson,
     deletePerson,
@@ -10,14 +11,17 @@ const {
   
   // Create a new person
   router.post('/api', createPerson);
+
+  // Read details of persons by user_id or name (optional query parameters)
+  router.get('/api', getPersons);
   
   // Read details of a person by user_id
-  router.get('/api/:user_id', getPerson);
+  router.get('/api/:queryParam', getPerson);
   
   // Update details of an existing person by user_id
-  router.put('/api/:user_id', updatePerson);
+  router.put('/api/:queryParam', updatePerson);
   
   // Delete a person by user_id
-  router.delete('/api/:user_id', deletePerson);
+  router.delete('/api/:queryParam', deletePerson);
   
   module.exports = router;  
