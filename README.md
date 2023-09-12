@@ -77,7 +77,7 @@ After then follow the steps below:
 
 ## Testing the API
 
-You can navigate to the Test Scrupt Folder to run the python script to test the CRUD operations.
+You can navigate to the Test Script Folder to run the python script to test the CRUD operations.
 
 Here is the **Hosted API:** `https://ayomide-rest-api.vercel.app/api`
 
