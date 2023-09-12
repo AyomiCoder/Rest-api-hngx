@@ -10,7 +10,7 @@ This API allows you to perform CRUD (Create, Read, Update, Delete) operations on
 - [API Usage](#api-usage)
   - [Endpoints](#endpoints)
   - [Authentication](#authentication)
-- [Running the API](#running-the-api)
+- [Running the API locally](#running-the-api)
 - [Testing the API](#testing-the-api)
 - [Contributing](#contributing)
 
@@ -62,18 +62,12 @@ Detailed documentation for each endpoint can be found [here](./Documentation.md)
 
 Authentication is not required to access the API endpoints.
 
-## Running the API
+## Running the API locally
 
-1. Create a `.env` file in the project directory and set the following environment variables:
+After running `npm install`, you might need to create a `.env file` and replace the connection string with yours because MongoDB atlas works with `IP` address in development mode. 
+After then follow the steps below:
 
-   ```
-   PORT=3000
-   MONGODB_URI=your-mongodb-connection-string
-   ```
-
-   Replace `your-mongodb-connection-string` with your MongoDB database connection string.
-
-2. Start the API server:
+1. Start the API server:
 
    ```shell
    npm start
@@ -82,6 +76,10 @@ Authentication is not required to access the API endpoints.
    The API will be available at `http://localhost:3000/api`.
 
 ## Testing the API
+
+You can navigate to the Test Scrupt Folder to run the python script to test the CRUD operations.
+
+Here is the **Hosted API:** `https://ayomide-rest-api.vercel.app/api`
 
 You can use tools like [Postman](https://www.postman.com/) or [curl](https://curl.se/) to test the API endpoints.
 
