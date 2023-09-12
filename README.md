@@ -13,7 +13,6 @@ This API allows you to perform CRUD (Create, Read, Update, Delete) operations on
 - [Running the API](#running-the-api)
 - [Testing the API](#testing-the-api)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Getting Started
 
@@ -21,7 +20,7 @@ This API allows you to perform CRUD (Create, Read, Update, Delete) operations on
 
 Before setting up and running the API, make sure you have the following prerequisites installed on your system:
 
-- Node.js (at least version 12.x)
+- Node.js (at least version 18)
 - MongoDB (either locally installed or a connection to a MongoDB Atlas cluster)
 - Mongo Shell & MongoDB Compass
 
@@ -52,10 +51,10 @@ Before setting up and running the API, make sure you have the following prerequi
 The API provides the following endpoints:
 
 - **Create a Person**: `POST /api`
-- **Read a Single Person**: `GET /api/:user_id`
 - **Read All Persons**: `GET /api`
-- **Update a Person**: `PUT /api/:user_id`
-- **Delete a Person**: `DELETE /api/:user_id`
+- **Read a Single Person**: `GET /api/_id` or `GET /api/name`
+- **Update a Person**: `PUT /api/:user_id` or `PUT /api/name`
+- **Delete a Person**: `DELETE /api/:_id` or `DELETE /api/name`
 
 Detailed documentation for each endpoint can be found [here](./Documentation.md).
 
@@ -73,8 +72,6 @@ Authentication is not required to access the API endpoints.
    ```
 
    Replace `your-mongodb-connection-string` with your MongoDB database connection string.
-
-   **The mongodb string for this project is stored in `config/db.js`**
 
 2. Start the API server:
 

@@ -6,7 +6,7 @@ Welcome to the comprehensive documentation for our REST API, designed to facilit
 
 Our REST API adheres to industry best practices, providing a robust and flexible solution for creating, retrieving, updating, and deleting person records. In this documentation, you will find detailed information on each endpoint, request and response formats, and example use cases to help you make the most of this resource.
 
-**Base URL:** `https://your-api-base-url.com/api`
+**Base URL:** `https://ayomide-rest-api.vercel.app/api`
 
 **Authentication:** No authentication is required for using this API, ensuring seamless integration into your applications.
 
@@ -15,16 +15,12 @@ Our REST API adheres to industry best practices, providing a robust and flexible
 
 ## Endpoints
 
-**Note: Make sure the `name` comes first before the `user_id`**
-**Note: MongoDB `id` doesn't occur in a sequential order and it contains 24 characters. So add your `user_id` field in your `POST` requests so you can `READ, UPDATE` and `DELETE` data with the custom `id` you have set.**
-
 ### Create a Person
 
 - **Endpoint**: `POST /api`
 - **Description**: Create a new person record.
 - **Request Body**:
-  - `name` (string): The name and an identifier for the person.
-  - `user_id` (number): The user ID and an identifier for the person.
+  - `name` (string): Set any name
 - **Response**:
   - HTTP Status Code: `201 Created`
   - Response Body: JSON representation of the created person.
@@ -34,15 +30,15 @@ Our REST API adheres to industry best practices, providing a robust and flexible
   Content-Type: application/json
 
   {
-    "name": "John Doe",
-    "user_id": "123"
+    "name": "OxAyomide"
   }
   ```
 - **Example Response**:
   ```json
   {
-    "name": "John Doe",
-    "user_id": "123"
+  "_id": "65005f568cbc3267df66eca5",
+  "name": "OxAyomide",
+  "__v": 0
   }
   ```
 
@@ -61,107 +57,110 @@ Our REST API adheres to industry best practices, providing a robust and flexible
   ```json
   [
     {
-      "name": "John Doe",
-      "user_id": "123"
-    },
-    {
-      "name": "Jane Smith",
-      "user_id": "456"
-    },
-    {
-      "name": "Alice Johnson",
-      "user_id": "789"
-    }
+  "_id": "65005f568cbc3267df66eca5",
+  "name": "OxAyomide",
+  "__v": 0
+  },
+  {
+  "_id": "65007d37da867095156c2ddb",
+  "name": "Mark Essien",
+  "__v": 0
+  },
+  {
+  "_id": "650079b91caabc18543199e5",
+  "name": "Naza",
+  "__v": 0
+  }
   ]
   ```
 
 ### Read a Person
 
 - **Endpoint**: `GET /api`
-- **Description**: Fetch details of a person by user_id or name. You can use query parameters to filter results.
+- **Description**: Fetch details of a person by _id or name. You can use query parameters to filter results.
 - **Query Parameters**:
   - `name` (string): The name of the person to retrieve.
-  - `user_id` (number): The user_id of the person to retrieve.
+  - `_id`(a string of 24 hex characters): The _id of the person to retrieve created by mongoDb.
 - **Response**:
   - HTTP Status Code: `200 OK`
   - Response Body: JSON representation of the person(s) matching the query.
 - **Example Request**:
-  - To fetch by user_id:
+  - To fetch by _id:
     ```http
-    GET /api/123
+    GET /api/65005f568cbc3267df66eca5
     ```
   - To fetch by name:
     ```http
-    GET /api/John Doe
+    GET /api/OxAyomide
     ```
 - **Example Response**:
   ```json
   [
     {
-      "name": "John Doe",
-      "user_id": "123"
+    "_id": "65005f568cbc3267df66eca5",
+    "name": "OxAyomide",
+    "__v": 0
     }
   ]
   ```
 
 ### Update a Person
 
-- **Endpoint**: `PUT /api/user_id` or `PUT /api/name`
-- **Description**: Modify details of an existing person by user_id or name.
+- **Endpoint**: `PUT /api/_id` or `PUT /api/name`
+- **Description**: Modify details of an existing person by _id or name.
 - **Request Parameters**:
-  - `name` (string, URL parameter): The user_id of the person to update.
-  - `user_id` (number, URL parameter): The user_id of the person to update.
+  - `name` (string): The name of the person to update.
 - **Request Body**:
   - `name` (new string): The updated name of the person.
-  - `user_id` (new number): The updated user_id of the person.
 - **Response**:
   - HTTP Status Code: `200 OK`
   - Response Body: JSON representation of the updated person.
 - **Example Request**:
   ```http
-  PUT /api/123
+  PUT /api/65005f568cbc3267df66eca5
   Content-Type: application/json
 
   {
-    "name": "Updated Name"
+    "name": "OxAyomide new"
   }
   ```
   or
 
     ```http
-  PUT /api/John Doe
+  PUT /api/OxAyomide
   Content-Type: application/json
 
   {
-    "name": "Updated Name"
+    "name": "OxAyomide new"
   }
   ```
 - **Example Response**:
   ```json
   {
-    "name": "Updated Name",
-    "user_id": "123"
+    "_id": "65005f568cbc3267df66eca5",
+    "name": "OxAyomide",
+    "__v": 0
   }
   ```
 
 ### Delete a Person
 
-- **Endpoint**: `DELETE /api/user_id` or `DELETE /api/name`
-- **Description**: Remove a person by user_id or name.
+- **Endpoint**: `DELETE /api/_id` or `DELETE /api/name`
+- **Description**: Remove a person by _id or name.
 - **Request Parameters**:
-  - `name` (string, URL parameter): The name of the person to delete.
-  - `user_id` (number, URL parameter): The user_id of the person to delete.
+  - `name` (string): The name of the person to delete.
+  - `_id`(a string of 24 hex characters): The _id of the person to delete created by mongoDb.
 - **Response**:
   - HTTP Status Code: `200 OK`
   - Response Body: JSON object with a success message.
 - **Example Request**:
   ```http
-  DELETE /api/123
+  DELETE /api/65007d37da867095156c2ddb
   ```
   or 
 
     ```http
-  DELETE /api/John Doe
+  DELETE /api/Mark Essien
   ```
 - **Example Response**:
   ```json
@@ -177,9 +176,9 @@ Congratulations! You have successfully explored the API documentation for the RE
 In summary, this API empowers you to:
 
 - **Create**: Add new person records to the database.
-- **Read**: Retrieve individual or all person records by user_id, name, or fetch all persons.
-- **Update**: Modify details of an existing person record by user_id.
-- **Delete**: Remove a person record by user_id.
+- **Read**: Retrieve individual or all person records by _id or name, and fetch all persons.
+- **Update**: Modify details of an existing person record by _id or name.
+- **Delete**: Remove a person record by _id or name.
 
 The API is designed to be straightforward and easy to use, making it a valuable tool for various applications, such as user management systems, address books, and more.
 
