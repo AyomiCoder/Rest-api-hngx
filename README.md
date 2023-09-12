@@ -2,6 +2,8 @@
 
 This API allows you to perform CRUD (Create, Read, Update, Delete) operations on person records stored in a MongoDB database.
 
+# PLEASE REFRESH THE  WEB PAGE INCASE THE HOSTED API DOESN'T LOAD AT FIRST. THANKS
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
