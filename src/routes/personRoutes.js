@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const {
     createPerson,
-    getPersons,
+    getAllPersons,
     getPerson,
     updatePerson,
     deletePerson,
@@ -13,15 +13,15 @@ const {
   router.post('/api', createPerson);
 
   // Read all
-  router.get('/api', getPersons);
+  router.get('/api', getAllPersons);
   
-  // Read details of a person by user_id or name
-  router.get('/api/:queryParam', getPerson);
+  // Read details of a person by _id or name
+  router.get('/api/:idOrName', getPerson);
   
-  // Update details of an existing person by user_id
-  router.put('/api/:queryParam', updatePerson);
+  // Update details of an existing person by _id or name
+  router.put('/api/:idOrName', updatePerson);
   
-  // Delete a person by user_id
-  router.delete('/api/:queryParam', deletePerson);
+  // Delete a person by _id or name
+  router.delete('/api/:idOrName', deletePerson);
   
   module.exports = router;  

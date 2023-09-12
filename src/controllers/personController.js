@@ -1,10 +1,12 @@
 // controllers/personController.js
+const mongoose = require('mongoose');
 const Person = require('../models/Person');
 
 // Create a new person
 const createPerson = async (req, res) => {
   try {
-    const person = await Person.create(req.body);
+    const person = new Person(req.body)
+    await person.save();
     res.status(201).json(person);
   } catch (error) {
     res.status(400).json({ error: 'Failed to create a person' });
@@ -12,95 +14,77 @@ const createPerson = async (req, res) => {
 };
 
 // Read all persons
-const getPersons = async (req, res) => {
+const getAllPersons = async (req, res) => {
   try {
-    const query = {};
-    if (req.query.user_id) {
-      query.user_id = req.query.user_id;
-    }
-    if (req.query.name) {
-      query.name = req.query.name;
-    }
-
-    const persons = await Person.find(query);
-
-    if (persons.length === 0) {
-      return res.status(404).json({ error: 'No matching persons found' });
-    }
-
-    res.json(persons);
+    const persons = await Person.find();
+    res.status(200).json(persons);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch persons' });
+    res.status(500).json({ error: 'Server error' });
   }
 };
 
-// Read details of a person by user_id or name (optional query parameters)
+// Read details of a person by user_id or name 
 const getPerson = async (req, res) => {
   try {
-    const queryParam = req.params.queryParam;
-    const query = {
-      $or: [
-        { user_id: queryParam },
-        { name: queryParam },
-      ],
-    };
-
+    let query;
+    if (mongoose.Types.ObjectId.isValid(req.params.idOrName)) {
+      // If it's a valid ObjectId, search by _id
+      query = { _id: req.params.idOrName };
+    } else {
+      // If it's not a valid ObjectId, search by name
+      query = { name: req.params.idOrName };
+    }
     const person = await Person.findOne(query);
-
     if (!person) {
       return res.status(404).json({ error: 'Person not found' });
     }
-
-    res.json(person);
+    res.status(200).json(person);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch person' });
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Server error' });
   }
 };
 
-// Update details of an existing person by user_id or name (optional query parameters)
+// Update details of an existing person by _id or name
 const updatePerson = async (req, res) => {
   try {
-    const queryParam = req.params.queryParam;
-    const query = {
-      $or: [
-        { user_id: queryParam },
-        { name: queryParam },
-      ],
-    };
-
+    let query;
+    if (mongoose.Types.ObjectId.isValid(req.params.idOrName)) {
+      // If it's a valid ObjectId, update by _id
+      query = { _id: req.params.idOrName };
+    } else {
+      // If it's not a valid ObjectId, update by name
+      query = { name: req.params.idOrName };
+    }
     const person = await Person.findOneAndUpdate(query, req.body, { new: true });
-
     if (!person) {
       return res.status(404).json({ error: 'Person not found' });
     }
-
-    res.json(person);
+    res.status(200).json(person);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to update person' });
+    res.status(500).json({ error: 'Server error' });
   }
 };
 
-// Delete a person by user_id or name (optional query parameters)
+// Delete a person by _id or name
 const deletePerson = async (req, res) => {
   try {
-    const queryParam = req.params.queryParam;
-    const query = {
-      $or: [
-        { user_id: queryParam },
-        { name: queryParam },
-      ],
-    };
-
+    let query;
+    if (mongoose.Types.ObjectId.isValid(req.params.idOrName)) {
+      // If it's a valid ObjectId, delete by _id
+      query = { _id: req.params.idOrName };
+    } else {
+      // If it's not a valid ObjectId, delete by name
+      query = { name: req.params.idOrName };
+    }
     const person = await Person.findOneAndDelete(query);
-
     if (!person) {
       return res.status(404).json({ error: 'Person not found' });
     }
-
-    res.json({ message: 'Person deleted successfully' });
+    res.status(200).json({ message: 'Person deleted successfully' });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to delete person' });
+    res.status(500).json({ error: 'Server error' });
   }
 };
 
-module.exports = { createPerson, getPersons, getPerson, updatePerson, deletePerson };
+module.exports = { createPerson, getAllPersons, getPerson, updatePerson, deletePerson };
