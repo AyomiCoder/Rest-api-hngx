@@ -26,7 +26,7 @@ Our REST API adheres to industry best practices, providing a robust and flexible
   - Response Body: JSON representation of the created person.
 - **Example Request**:
   ```http
-  POST /api
+  POST https://ayomide-rest-api.vercel.app/api
   Content-Type: application/json
 
   {
@@ -51,7 +51,7 @@ Our REST API adheres to industry best practices, providing a robust and flexible
   - Response Body: JSON representation of all persons in the database.
 - **Example Request**:
   ```http
-  GET /api
+  GET https://ayomide-rest-api.vercel.app/api
   ```
 - **Example Response**:
   ```json
