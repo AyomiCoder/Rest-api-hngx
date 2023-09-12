@@ -22,7 +22,7 @@ def delete_person(identifier):
 # Testing the CRUD operations
 if __name__ == "__main__":
     # Create a new person
-    create_response = requests.post(f"{base_url}", json={"name": "John Doe"})
+    create_response = requests.post(f"{base_url}", json={"name": "Ayomide Stephen"})
     _id = create_response.json().get("_id")
 
     # Get person by _id
@@ -31,22 +31,22 @@ if __name__ == "__main__":
     print(get_by_id_response.json())
 
     # Get person by name
-    get_by_name_response = get_person("John Doe")
+    get_by_name_response = get_person("Ayomide Stephen")
     print("Get Person by Name Response:")
     print(get_by_name_response.json())
 
     # Update person by _id
-    update_by_id_response = update_person(_id, "John Smith")
+    update_by_id_response = update_person(_id, "Naza")
     print("Update Person by _id Response:")
     print(update_by_id_response.json())
 
     # Update person by name
-    update_by_name_response = update_person("John Smith", "Jane Doe")
+    update_by_name_response = update_person("Naza", "Jovial Core")
     print("Update Person by Name Response:")
     print(update_by_name_response.json())
 
     # Delete person by name
-    delete_by_name_response = delete_person("Jane Doe")
+    delete_by_name_response = delete_person("Jovial Core")
     print("Delete Person by Name Response:")
     print(delete_by_name_response.json())
     
