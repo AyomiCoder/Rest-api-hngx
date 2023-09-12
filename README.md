@@ -53,7 +53,7 @@ The API provides the following endpoints:
 - **Create a Person**: `POST /api`
 - **Read All Persons**: `GET /api`
 - **Read a Single Person**: `GET /api/_id` or `GET /api/name`
-- **Update a Person**: `PUT /api/:user_id` or `PUT /api/name`
+- **Update a Person**: `PUT /api/:_id` or `PUT /api/name`
 - **Delete a Person**: `DELETE /api/:_id` or `DELETE /api/name`
 
 Detailed documentation for each endpoint can be found [here](./Documentation.md).
